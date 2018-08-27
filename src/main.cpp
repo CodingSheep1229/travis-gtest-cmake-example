@@ -1,15 +1,31 @@
 #include <iostream>
-#include "project1.h"
+#include <string>
+#include "NFA.h"
+#include "ExpTree.h"
+#include <fstream>
 
 using namespace std;
 
-int main() {
-	cout << "do stuff" << endl;
-	int x = 4;
-	cout << x << endl;
-	independentMethod(x);
-	cout << x << endl;
-	Project1 p;
-	p.foo(x);
-	cout << x << endl;
+int main(int argc,char* argv[])
+{
+    string filename = argv[1];
+    
+    fstream file;
+
+    file.open(filename);
+
+    string str = "",inputStr;
+
+    while(getline(file, inputStr))
+    {
+        str += inputStr;
+        str += "\n";
+    }
+    file.close();
+
+    NFA nfa(str);
+
+    cout << nfa.ParikhImage() << endl;
+
+    return 0;
 }

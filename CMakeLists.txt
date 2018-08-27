@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 
 # Make PROJECT_SOURCE_DIR, PROJECT_BINARY_DIR, and PROJECT_NAME available.
-set(PROJECT_NAME project1)
+set(PROJECT_NAME NFA)
 project(${PROJECT_NAME})
 
 set(CMAKE_CXX_FLAGS "-g -Wall")
@@ -24,13 +24,13 @@ set(CMAKE_CXX_STANDARD 11)
 ################################
 # Normal Libraries & Executables
 ################################
-add_library(project1_lib ${SRC_FILES})
-add_executable(project1 ${PROJECT_SOURCE_DIR}/src/main.cpp)
+add_library(NFA_lib ${SRC_FILES})
+add_executable(NFA ${PROJECT_SOURCE_DIR}/src/main.cpp)
 # Key idea: SEPARATE OUT your main() function into its own file so it can be its
 # own executable. Separating out main() means you can add this library to be
 # used elsewhere (e.g linking to the test executable).
 
-target_link_libraries(project1 project1_lib)
+target_link_libraries(NFA NFA_lib)
 
 ################################
 # Testing
@@ -58,7 +58,7 @@ if (BUILD_TESTS)
   target_link_libraries(runUnitTests gtest gtest_main)
 
   # Extra linking for the project.
-  target_link_libraries(runUnitTests project1_lib)
+  target_link_libraries(runUnitTests NFA_lib)
 
   # This is so you can do 'make test' to see all your tests run, instead of
   # manually running the executable runUnitTests to see those specific tests.
